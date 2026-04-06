@@ -18,6 +18,14 @@
       --muted: #7a7875;
       --accent: #e8c97a;
       --accent2: #c4a44e;
+      /* themeable colours */
+      --logo-color: #e8c97a;
+      --hero-em-color: #e8c97a;
+      --hero-glow: rgba(232, 201, 122, 0.10);
+      /* font scale */
+      --font-scale: 1;
+      /* body font */
+      --body-font: 'DM Sans', sans-serif;
     }
 
     * {
@@ -29,9 +37,361 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body-font);
+      font-size: calc(1rem * var(--font-scale));
       min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       SETTINGS PANEL
+    ═══════════════════════════════════════════ */
+    .settings-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .settings-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .settings-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      z-index: 600;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 4.5rem 1.5rem 0;
+    }
+    .settings-overlay.open { display: flex; }
+
+    .settings-panel {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      width: 640px;
+      max-height: calc(100vh - 6rem);
+      overflow-y: auto;
+      padding: 1.6rem;
+      animation: fadeUp 0.22s ease both;
+    }
+
+    .settings-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.6rem;
+    }
+    .settings-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .settings-close {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.18s;
+    }
+    .settings-close:hover { color: var(--text); }
+
+    .settings-section {
+      margin-bottom: 1.5rem;
+    }
+    .settings-section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    /* font size slider */
+    .settings-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .settings-slider-row span { font-size: 0.78rem; color: var(--muted); min-width: 28px; }
+    .settings-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      background: var(--surface2);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    .settings-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 2px solid var(--bg);
+    }
+
+    /* font style chips */
+    .settings-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .settings-chip {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--body-font);
+      font-size: 0.78rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .settings-chip:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+    .settings-chip.active { border-color: var(--accent); color: var(--accent); background: rgba(232,201,122,0.08); }
+
+    /* colour swatches */
+    .settings-swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .settings-swatch {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+    }
+    .settings-swatch:hover { transform: scale(1.15); }
+    .settings-swatch.active { border-color: white; }
+
+    /* colour input row */
+    .settings-color-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+    .settings-color-row label { font-size: 0.78rem; color: var(--muted); flex: 1; }
+    .settings-color-input {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 0;
+      cursor: pointer;
+      background: none;
+    }
+
+    .settings-reset {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--body-font);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.18s;
+      margin-top: 0.5rem;
+    }
+    .settings-reset:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+    /* ═══════════════════════════════════════════
+       UNIT QUIZ (path node quiz)
+    ═══════════════════════════════════════════ */
+    .unit-quiz-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      z-index: 550;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .unit-quiz-overlay.open { display: flex; }
+
+    .unit-quiz-panel {
+      background: var(--surface);
+      border: 1px solid rgba(232,201,122,0.2);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      animation: fadeUp 0.25s ease both;
+    }
+
+    .uq-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.18s;
+    }
+    .uq-close:hover { color: var(--text); }
+
+    .uq-header { text-align: center; margin-bottom: 1.6rem; }
+    .uq-icon { font-size: 2.2rem; margin-bottom: 0.4rem; }
+    .uq-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .uq-subtitle { font-size: 0.8rem; color: var(--muted); }
+
+    .uq-progress-bar {
+      height: 5px;
+      background: var(--surface2);
+      border-radius: 3px;
+      margin-bottom: 1.6rem;
+      overflow: hidden;
+    }
+    .uq-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .uq-q-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .uq-word {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+
+    .uq-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+    }
+    .uq-opt {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--body-font);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: left;
+    }
+    .uq-opt:hover:not(:disabled) { border-color: rgba(232,201,122,0.4); background: var(--surface); }
+    .uq-opt.correct { border-color: #6fcf97; background: rgba(111,207,151,0.12); color: #6fcf97; }
+    .uq-opt.wrong   { border-color: #eb5757; background: rgba(235,87,87,0.12); color: #eb5757; }
+    .uq-opt:disabled { cursor: default; }
+
+    .uq-feedback {
+      text-align: center;
+      min-height: 1.3rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .uq-feedback.good { color: #6fcf97; }
+    .uq-feedback.bad  { color: #eb5757; }
+
+    .uq-next {
+      display: none;
+      width: 100%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 12px;
+      font-family: var(--body-font);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .uq-next:hover { background: var(--accent2); }
+
+    /* result screen */
+    .uq-result {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .uq-result.visible { display: block; }
+    .uq-result-emoji { font-size: 3rem; margin-bottom: 0.8rem; }
+    .uq-result-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .uq-result-msg { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.6rem; }
+    .uq-result-actions { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; }
+    .uq-btn-pass {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 12px;
+      font-family: var(--body-font);
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 0.8rem 1.6rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .uq-btn-pass:hover { background: var(--accent2); }
+    .uq-btn-retry {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 12px;
+      font-family: var(--body-font);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.8rem 1.6rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .uq-btn-retry:hover { background: rgba(232,201,122,0.08); }
+
+    @media (max-width: 480px) {
+      .uq-options { grid-template-columns: 1fr; }
     }
 
     nav {
@@ -53,13 +413,11 @@
       font-size: 1.5rem;
       font-weight: 900;
       letter-spacing: -0.02em;
-      color: var(--accent);
       flex-shrink: 0;
     }
 
-    .logo span {
-      color: var(--text);
-    }
+    #logoLin { color: var(--logo-color); }
+    #logoGua { color: var(--text); }
 
     .nav-langs {
       display: flex;
@@ -101,7 +459,7 @@
       transform: translateX(-50%);
       width: 600px;
       height: 300px;
-      background: radial-gradient(ellipse, rgba(232, 201, 122, 0.10) 0%, transparent 70%);
+      background: radial-gradient(ellipse, var(--hero-glow) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -125,7 +483,7 @@
 
     .hero h1 em {
       font-style: italic;
-      color: var(--accent);
+      color: var(--hero-em-color);
     }
 
     .hero p {
@@ -167,7 +525,7 @@
     }
 
     .lang-card:hover {
-      border-color: rgba(232, 201, 122, 0.35);
+      border-color: var(--accent);
       transform: translateY(-3px);
     }
 
@@ -177,7 +535,7 @@
 
     .lang-card.selected {
       border-color: var(--accent);
-      background: rgba(232, 201, 122, 0.05);
+      background: #0e0e0e;
     }
 
     .lang-card.selected::before {
@@ -765,20 +1123,455 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ═══════════════════════════════════════════════
+       LEARNING PATH — Duolingo-style skill tree
+    ═══════════════════════════════════════════════ */
+
+    .path-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .path-legend {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .path-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .legend-dot.done   { background: var(--accent); }
+    .legend-dot.active { background: #7ec8e3; }
+    .legend-dot.locked { background: var(--surface2); border: 1px solid var(--border); }
+
+    /* The spine track */
+    .path-track {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding-bottom: 3rem;
+    }
+
+    /* Section divider banners */
+    .path-section-banner {
+      width: 100%;
+      max-width: 480px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.9rem 1.5rem;
+      margin: 2rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .path-section-banner:first-of-type {
+      margin-top: 0;
+    }
+
+    .path-section-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .path-section-info {
+      flex: 1;
+    }
+
+    .path-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .path-section-subtitle {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .path-section-progress {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* Connector line between nodes */
+    .path-connector {
+      width: 3px;
+      height: 28px;
+      background: var(--border);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .path-connector.done {
+      background: rgba(232, 201, 122, 0.4);
+    }
+
+    /* Individual skill nodes */
+    .path-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+    }
+
+    /* Zig-zag offset classes */
+    .path-row.offset-left  { transform: translateX(-60px); }
+    .path-row.offset-right { transform: translateX(60px); }
+    .path-row.offset-center { transform: translateX(0); }
+
+    .path-node-btn {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 1.8rem;
+      background: var(--surface2);
+      box-shadow: 0 4px 0 rgba(0,0,0,0.4);
+    }
+
+    .path-node-btn:hover:not(.locked) {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 0 rgba(0,0,0,0.4);
+    }
+
+    .path-node-btn:active:not(.locked) {
+      transform: translateY(1px);
+      box-shadow: 0 2px 0 rgba(0,0,0,0.4);
+    }
+
+    /* State: done */
+    .path-node-btn.done {
+      background: linear-gradient(145deg, #d4a843, #e8c97a);
+      box-shadow: 0 4px 0 #a07828;
+    }
+
+    .path-node-btn.done:hover {
+      box-shadow: 0 7px 0 #a07828;
+    }
+
+    /* State: active (current) */
+    .path-node-btn.active {
+      background: linear-gradient(145deg, #5bb8d4, #7ec8e3);
+      box-shadow: 0 4px 0 #3a8fa8;
+      animation: pulse-node 2s ease-in-out infinite;
+    }
+
+    .path-node-btn.active:hover {
+      box-shadow: 0 7px 0 #3a8fa8;
+    }
+
+    /* State: locked */
+    .path-node-btn.locked {
+      opacity: 0.38;
+      cursor: default;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+    }
+
+    @keyframes pulse-node {
+      0%, 100% { box-shadow: 0 4px 0 #3a8fa8, 0 0 0 0 rgba(126, 200, 227, 0.4); }
+      50%       { box-shadow: 0 4px 0 #3a8fa8, 0 0 0 10px rgba(126, 200, 227, 0); }
+    }
+
+    /* Crown / star on completed */
+    .path-node-crown {
+      position: absolute;
+      top: -10px;
+      font-size: 0.85rem;
+    }
+
+    /* XP badge */
+    .path-node-xp {
+      position: absolute;
+      bottom: -8px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      padding: 0.1rem 0.45rem;
+      letter-spacing: 0.04em;
+    }
+
+    .path-node-btn.active .path-node-xp {
+      border-color: #7ec8e3;
+      color: #7ec8e3;
+    }
+
+    .path-node-btn.locked .path-node-xp {
+      color: var(--muted);
+    }
+
+    /* Node label beside the bubble */
+    .path-node-label {
+      flex: 1;
+    }
+
+    .path-node-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .path-node-desc {
+      font-size: 0.77rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .path-node-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.55rem;
+      border-radius: 100px;
+      margin-top: 0.35rem;
+    }
+
+    .path-node-tag.done   { background: rgba(232,201,122,0.15); color: var(--accent); }
+    .path-node-tag.active { background: rgba(126,200,227,0.15); color: #7ec8e3; }
+    .path-node-tag.locked { background: var(--surface2); color: var(--muted); }
+
+    /* Streak / overall progress bar */
+    .path-overall-bar {
+      width: 100%;
+      max-width: 480px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem 1.6rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .path-overall-emoji { font-size: 2rem; flex-shrink: 0; }
+
+    .path-overall-info { flex: 1; }
+
+    .path-overall-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .path-overall-track {
+      height: 8px;
+      background: var(--surface2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .path-overall-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+
+    .path-overall-pct {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 0.35rem;
+    }
+
+    /* No path placeholder */
+    .path-empty {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+    }
+
+    .path-empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+    .path-empty h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .path-empty p { font-size: 0.88rem; line-height: 1.6; max-width: 340px; margin: 0 auto; }
+
+    /* Modal overlay for node detail */
+    .path-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .path-modal-overlay.open {
+      display: flex;
+    }
+
+    .path-modal {
+      background: var(--surface);
+      border: 1px solid rgba(232,201,122,0.2);
+      border-radius: 22px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+      animation: fadeUp 0.25s ease both;
+    }
+
+    .path-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.18s;
+    }
+
+    .path-modal-close:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    .path-modal-icon { font-size: 2.8rem; text-align: center; margin-bottom: 0.7rem; }
+
+    .path-modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .path-modal-section {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .path-modal-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      text-align: center;
+      margin-bottom: 1.4rem;
+    }
+
+    .path-modal-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .path-modal-skill-tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      color: var(--muted);
+    }
+
+    .path-modal-cta {
+      width: 100%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .path-modal-cta:hover { background: var(--accent2); }
+
+    .path-modal-cta.locked-cta {
+      background: var(--surface2);
+      color: var(--muted);
+      cursor: default;
+    }
+
+    @media (max-width: 620px) {
+      .path-row.offset-left  { transform: translateX(-28px); }
+      .path-row.offset-right { transform: translateX(28px); }
+    }
   </style>
 </head>
 
 <body>
 
   <nav>
-    <div class="logo">Lin<span>gua</span></div>
+    <div class="logo"><span id="logoLin">Lin</span><span id="logoGua">gua</span></div>
     <div class="nav-langs" id="navLangs"></div>
+    <button class="settings-btn" id="settingsBtn" title="Settings">⚙</button>
   </nav>
 
   <main>
     <section class="hero">
       <p class="hero-eyebrow">Free Language Learning</p>
-      <h1>Speak the<br><em>world's</em> languages</h1>
+      <h1>Speak the<br><em>world's languages</em></h1>
       <p>Choose a language to start learning vocabulary, phrases, grammar, and quiz yourself by category.</p>
     </section>
 
@@ -789,6 +1582,7 @@
         <button class="tab active" data-tab="vocab">Vocabulary</button>
         <button class="tab" data-tab="phrases">Phrases</button>
         <button class="tab" data-tab="grammar">Grammar</button>
+        <button class="tab" data-tab="path">Learning Path</button>
         <button class="tab" data-tab="quiz">Quiz</button>
       </div>
 
@@ -809,6 +1603,11 @@
       <div class="tab-panel" id="tab-grammar">
         <div class="section-title" id="grammarTitle"></div>
         <div class="grammar-section" id="grammarSection"></div>
+      </div>
+
+      <div class="tab-panel" id="tab-path">
+        <div class="section-title" id="pathTitle"></div>
+        <div id="pathContent"></div>
       </div>
 
       <div class="tab-panel" id="tab-quiz">
@@ -847,6 +1646,124 @@
       </div>
     </div>
   </main>
+
+  <!-- Settings Panel -->
+  <div class="settings-overlay" id="settingsOverlay">
+    <div class="settings-panel" id="settingsPanel">
+      <div class="settings-header">
+        <div class="settings-title">⚙ Settings</div>
+        <button class="settings-close" onclick="closeSettings()">✕</button>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-label">Font Size</div>
+        <div class="settings-slider-row">
+          <span>A</span>
+          <input type="range" class="settings-slider" id="fontSizeSlider" min="0.75" max="1.25" step="0.05" value="1">
+          <span style="font-size:1.2rem">A</span>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-label">Body Font</div>
+        <div class="settings-chips" id="fontChips">
+          <button class="settings-chip active" data-font="'DM Sans', sans-serif">DM Sans</button>
+          <button class="settings-chip" data-font="'Inter', sans-serif">Inter</button>
+          <button class="settings-chip" data-font="'Georgia', serif">Georgia</button>
+          <button class="settings-chip" data-font="'Courier New', monospace">Mono</button>
+          <button class="settings-chip" data-font="system-ui, sans-serif">System</button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-label"> <em>Highlight Color</em> </div>
+        <div class="settings-swatches" id="highlightSwatches">
+          <div class="settings-swatch active" data-target="highlight" style="background:#f07d6a" data-color="#f07d6a"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#c72626" data-color="#c72626"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#d97415" data-color="#d97415"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#e8c97a" data-color="#e8c97a"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#6fcf97" data-color="#6fcf97"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#1dd269" data-color="#1dd269"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#7ec8e3" data-color="#7ec8e3"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#1993c0" data-color="#1993c0"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#341da4" data-color="#341da4"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#9b8ede" data-color="#9b8ede"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#e3e3e3" data-color="#e3e3e3"></div>
+          <div class="settings-swatch" data-target="highlight" style="background:#6b6b6b" data-color="#6b6b6b"></div>
+        </div>
+        <div class="settings-color-row">
+          <label>Custom Color</label>
+          <input type="color" class="settings-color-input" id="highlightColorPicker" value="#e8c97a">
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-label"> <em>Accent Color</em> </div>
+        <div class="settings-swatches" id="accentSwatches">
+          <div class="settings-swatch active" data-target="accent" style="background:#f07d6a" data-color="#f07d6a"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#c72626" data-color="#c72626"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#d97415" data-color="#d97415"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#e8c97a" data-color="#e8c97a"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#6fcf97" data-color="#6fcf97"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#1dd269" data-color="#1dd269"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#7ec8e3" data-color="#7ec8e3"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#1993c0" data-color="#1993c0"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#341da4" data-color="#341da4"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#9b8ede" data-color="#9b8ede"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#e3e3e3" data-color="#e3e3e3"></div>
+          <div class="settings-swatch" data-target="accent" style="background:#6b6b6b" data-color="#6b6b6b"></div>
+        </div>
+        <div class="settings-color-row">
+          <label>Custom Color</label>
+          <input type="color" class="settings-color-input" id="accentColorPicker" value="#e8c97a">
+        </div>
+      </div>
+
+      <button class="settings-reset" onclick="resetSettings()">↺ Reset to defaults</button>
+    </div>
+  </div>
+
+  <!-- Unit Quiz Overlay -->
+  <div class="unit-quiz-overlay" id="unitQuizOverlay">
+    <div class="unit-quiz-panel">
+      <button class="uq-close" onclick="closeUnitQuiz()">✕</button>
+      <div class="uq-header">
+        <div class="uq-icon" id="uqIcon"></div>
+        <div class="uq-title" id="uqTitle"></div>
+        <div class="uq-subtitle" id="uqSubtitle"></div>
+      </div>
+      <div class="uq-progress-bar"><div class="uq-progress-fill" id="uqProgressFill" style="width:0%"></div></div>
+
+      <div id="uqQuestionArea">
+        <div class="uq-q-label" id="uqQLabel"></div>
+        <div class="uq-word" id="uqWord"></div>
+        <div class="uq-options" id="uqOptions"></div>
+        <div class="uq-feedback" id="uqFeedback"></div>
+        <button class="uq-next" id="uqNext">Next →</button>
+      </div>
+
+      <div class="uq-result" id="uqResult">
+        <div class="uq-result-emoji" id="uqResultEmoji"></div>
+        <div class="uq-result-score" id="uqResultScore"></div>
+        <div class="uq-result-msg" id="uqResultMsg"></div>
+        <div class="uq-result-actions">
+          <button class="uq-btn-pass" id="uqBtnPass" style="display:none">✓ Mark Complete</button>
+          <button class="uq-btn-retry" onclick="retryUnitQuiz()">↩ Try Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="path-modal-overlay" id="pathModalOverlay">
+    <div class="path-modal" id="pathModal">
+      <button class="path-modal-close" onclick="closePathModal()">✕</button>
+      <div class="path-modal-icon" id="pmIcon"></div>
+      <div class="path-modal-title" id="pmTitle"></div>
+      <div class="path-modal-section" id="pmSection"></div>
+      <div class="path-modal-desc" id="pmDesc"></div>
+      <div class="path-modal-skills" id="pmSkills"></div>
+      <button class="path-modal-cta" id="pmCta"></button>
+    </div>
+  </div>
 
   <script>
     // ══════════════════════════════════════════════════════
@@ -1044,7 +1961,146 @@
               { foreign: "Me levanto a las 7.", english: "I get up at 7." },
             ]
           },
-        ]
+        ],
+
+        learningPath: [
+          {
+            section: "Foundations",
+            icon: "🌱",
+            description: "Build your first words and sounds in Spanish.",
+            nodes: [
+              {
+                id: "sp-greetings",
+                name: "Greetings",
+                icon: "👋",
+                description: "Say hello, goodbye, and introduce yourself with confidence.",
+                skills: ["Hola", "Adiós", "Por favor", "Gracias"],
+                xp: 20,
+                status: "done"
+              },
+              {
+                id: "sp-numbers",
+                name: "Numbers 1–10",
+                icon: "🔢",
+                description: "Count from one to ten — the backbone of every conversation.",
+                skills: ["Uno", "Dos", "Tres", "Cuatro", "Cinco"],
+                xp: 20,
+                status: "done"
+              },
+              {
+                id: "sp-pronouns",
+                name: "Pronouns",
+                icon: "🙋",
+                description: "Learn who's who: yo, tú, él, ella, nosotros, ellos.",
+                skills: ["Yo", "Tú", "Él / Ella", "Nosotros"],
+                xp: 30,
+                status: "active"
+              },
+            ]
+          },
+          {
+            section: "Everyday Life",
+            icon: "🏙️",
+            description: "Navigate the world around you in Spanish.",
+            nodes: [
+              {
+                id: "sp-family",
+                name: "Family",
+                icon: "👨‍👩‍👧",
+                description: "Talk about the people closest to you.",
+                skills: ["Madre", "Padre", "Hermano", "Abuela"],
+                xp: 30,
+                status: "locked"
+              },
+              {
+                id: "sp-food",
+                name: "Food & Drink",
+                icon: "🍽️",
+                description: "Order meals, describe food, and survive in any restaurant.",
+                skills: ["El agua", "El café", "El pan", "La carne"],
+                xp: 40,
+                status: "locked"
+              },
+              {
+                id: "sp-places",
+                name: "Places",
+                icon: "🗺️",
+                description: "Find your way around town — hotel, airport, market and more.",
+                skills: ["La casa", "El aeropuerto", "La playa"],
+                xp: 40,
+                status: "locked"
+              },
+            ]
+          },
+          {
+            section: "Conversations",
+            icon: "💬",
+            description: "String sentences together and hold real conversations.",
+            nodes: [
+              {
+                id: "sp-time",
+                name: "Time & Days",
+                icon: "⏰",
+                description: "Talk about when things happen — today, tomorrow, next week.",
+                skills: ["Hoy", "Mañana", "La semana", "El año"],
+                xp: 40,
+                status: "locked"
+              },
+              {
+                id: "sp-descriptions",
+                name: "Descriptions",
+                icon: "🎨",
+                description: "Describe people, places, and things with adjectives.",
+                skills: ["Grande", "Pequeño", "Bonito", "Feliz"],
+                xp: 50,
+                status: "locked"
+              },
+              {
+                id: "sp-grammar-ser",
+                name: "Ser vs. Estar",
+                icon: "⚖️",
+                description: "Master Spanish's two 'to be' verbs — the #1 hurdle for learners.",
+                skills: ["Soy", "Estoy", "Es", "Está"],
+                xp: 60,
+                status: "locked"
+              },
+            ]
+          },
+          {
+            section: "Fluency",
+            icon: "🚀",
+            description: "Put it all together and reach conversational level.",
+            nodes: [
+              {
+                id: "sp-reflexive",
+                name: "Reflexive Verbs",
+                icon: "🔄",
+                description: "Me llamo, me levanto — actions you do to yourself.",
+                skills: ["Me llamo", "Me levanto", "Se llama"],
+                xp: 60,
+                status: "locked"
+              },
+              {
+                id: "sp-travel-phrases",
+                name: "Travel Phrases",
+                icon: "✈️",
+                description: "Survive airports, trains, and hotels with these key phrases.",
+                skills: ["¿Dónde está…?", "Un billete a…", "La cuenta"],
+                xp: 50,
+                status: "locked"
+              },
+              {
+                id: "sp-fluency",
+                name: "Fluency Check",
+                icon: "🏆",
+                description: "Prove you've mastered everything — the ultimate challenge.",
+                skills: ["Full vocab", "All phrases", "Grammar"],
+                xp: 100,
+                status: "locked"
+              },
+            ]
+          },
+        ],
       },
 
       // ─────────────────────────── FRENCH ────────────────────────────
@@ -1234,7 +2290,137 @@
               { foreign: "Elle est allée au marché.", english: "She went to the market. (être + agreement)" },
             ]
           },
-        ]
+        ],
+
+        learningPath: [
+          {
+            section: "Les Bases",
+            icon: "🌱",
+            description: "Start with the essentials — greet people and count to ten.",
+            nodes: [
+              {
+                id: "fr-greetings",
+                name: "Greetings",
+                icon: "👋",
+                description: "Bonjour, bonsoir, au revoir — nail the French hello and goodbye.",
+                skills: ["Bonjour", "Au revoir", "Merci", "S'il vous plaît"],
+                xp: 20,
+                status: "done"
+              },
+              {
+                id: "fr-articles",
+                name: "Le / La / Les",
+                icon: "📖",
+                description: "French nouns have gender. Learn which article goes with which noun.",
+                skills: ["Le (masc)", "La (fem)", "Les (pl)", "L' (vowel)"],
+                xp: 30,
+                status: "done"
+              },
+              {
+                id: "fr-numbers",
+                name: "Numbers",
+                icon: "🔢",
+                description: "Un, deux, trois… count your way into French.",
+                skills: ["Un", "Deux", "Trois", "Dix", "Vingt"],
+                xp: 20,
+                status: "active"
+              },
+            ]
+          },
+          {
+            section: "La Vie Quotidienne",
+            icon: "☕",
+            description: "Handle daily situations in French.",
+            nodes: [
+              {
+                id: "fr-family",
+                name: "La Famille",
+                icon: "👨‍👩‍👧",
+                description: "Mère, père, frère, sœur — talk about the people you love.",
+                skills: ["La mère", "Le père", "Le frère", "La sœur"],
+                xp: 30,
+                status: "locked"
+              },
+              {
+                id: "fr-food",
+                name: "Food & Drink",
+                icon: "🥖",
+                description: "From baguettes to café au lait — essential French food vocab.",
+                skills: ["Le pain", "Le vin", "Le fromage", "L'eau"],
+                xp: 40,
+                status: "locked"
+              },
+              {
+                id: "fr-places",
+                name: "Places",
+                icon: "🗼",
+                description: "Navigate cities, find the gare, and check into l'hôtel.",
+                skills: ["La maison", "La gare", "L'aéroport", "La plage"],
+                xp: 40,
+                status: "locked"
+              },
+            ]
+          },
+          {
+            section: "La Grammaire",
+            icon: "✏️",
+            description: "Understand the patterns that make French work.",
+            nodes: [
+              {
+                id: "fr-etre",
+                name: "Être — To Be",
+                icon: "🧩",
+                description: "Je suis, tu es, il est — the most essential verb in French.",
+                skills: ["Je suis", "Tu es", "Il est", "Nous sommes"],
+                xp: 50,
+                status: "locked"
+              },
+              {
+                id: "fr-negation",
+                name: "Ne … Pas",
+                icon: "🚫",
+                description: "Negate any sentence with the ne…pas wrapper.",
+                skills: ["Je ne sais pas", "Ce n'est pas", "Il ne vient pas"],
+                xp: 50,
+                status: "locked"
+              },
+              {
+                id: "fr-passe",
+                name: "Passé Composé",
+                icon: "⏳",
+                description: "Talk about the past: j'ai mangé, elle est allée.",
+                skills: ["J'ai mangé", "Tu as dit", "Elle est allée"],
+                xp: 70,
+                status: "locked"
+              },
+            ]
+          },
+          {
+            section: "Niveau Avancé",
+            icon: "🎭",
+            description: "Reach true conversational fluency in French.",
+            nodes: [
+              {
+                id: "fr-adjectives",
+                name: "Adjectives",
+                icon: "🎨",
+                description: "Grand, petit, beau — match gender and number like a native.",
+                skills: ["Grand / Grande", "Bon / Bonne", "Vieux / Vieille"],
+                xp: 60,
+                status: "locked"
+              },
+              {
+                id: "fr-fluency",
+                name: "Fluency Check",
+                icon: "🏆",
+                description: "The final challenge — prove your mastery of French.",
+                skills: ["Full vocab", "All phrases", "Grammar"],
+                xp: 100,
+                status: "locked"
+              },
+            ]
+          },
+        ],
       },
 
       // ─────────────────────────── GERMAN ────────────────────────────
@@ -2016,6 +3202,33 @@
     let selectedQuizCats = new Set();
     let quizPool = [], quizIndex = 0, quizScore = 0, quizAnswered = false;
 
+    // pathProgress: { [langId]: Set<nodeId> } — nodes the user has marked done
+    let pathProgress = {};
+    try {
+      const saved = localStorage.getItem('lingua_path_progress');
+      if (saved) {
+        const raw = JSON.parse(saved);
+        for (const [k, v] of Object.entries(raw)) pathProgress[k] = new Set(v);
+      }
+    } catch(e) {}
+
+    function savePathProgress() {
+      try {
+        const plain = {};
+        for (const [k, v] of Object.entries(pathProgress)) plain[k] = [...v];
+        localStorage.setItem('lingua_path_progress', JSON.stringify(plain));
+      } catch(e) {}
+    }
+
+    // Returns 'done' | 'active' | 'locked' based on real progress, not hardcoded data
+    function getNodeStatus(node, allNodes, completedSet) {
+      if (completedSet.has(node.id)) return 'done';
+      for (const n of allNodes) {
+        if (!completedSet.has(n.id)) return n.id === node.id ? 'active' : 'locked';
+      }
+      return 'locked';
+    }
+
     // ── BOOT ──────────────────────────────────────────────
     function init() {
       renderLangPicker();
@@ -2023,6 +3236,8 @@
       document.querySelectorAll('.tab').forEach(t =>
         t.addEventListener('click', () => activateTab(t.dataset.tab))
       );
+      initSettings();
+      applySettings();
     }
 
     function renderLangPicker() {
@@ -2070,7 +3285,7 @@
       setTimeout(() => area.classList.remove('animate-in'), 500);
 
       activateTab('vocab');
-      renderVocab(); renderPhrases(); renderGrammar();
+      renderVocab(); renderPhrases(); renderGrammar(); renderPath();
     }
 
     // ── TABS ───────────────────────────────────────────────
@@ -2078,6 +3293,7 @@
       document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === `tab-${id}`));
       if (id === 'quiz') renderQuizSetup();
+      if (id === 'path') renderPath();
     }
 
     // ── VOCAB ──────────────────────────────────────────────
@@ -2326,6 +3542,468 @@
       document.getElementById('quizResult').classList.remove('visible');
       document.getElementById('quizActive').classList.remove('running');
       renderQuizSetup();
+    }
+
+    // ── LEARNING PATH ──────────────────────────────────────
+    function renderPath() {
+      const lang = currentLang;
+      const container = document.getElementById('pathContent');
+      container.innerHTML = '';
+
+      document.getElementById('pathTitle').innerHTML =
+        `<span>${lang.flag}</span> ${lang.name} — <span>Learning Path</span>`;
+
+      if (!lang.learningPath || lang.learningPath.length === 0) {
+        container.innerHTML = `
+          <div class="path-empty">
+            <div class="path-empty-icon">🗺️</div>
+            <h3>No Learning Path Yet</h3>
+            <p>Add a <code>learningPath</code> array to this language's data to display a Duolingo-style skill tree here.</p>
+          </div>`;
+        return;
+      }
+
+      const completed = pathProgress[lang.id] || new Set();
+      const allNodes = lang.learningPath.flatMap(s => s.nodes);
+      const doneCount = allNodes.filter(n => completed.has(n.id)).length;
+      const totalCount = allNodes.length;
+      const pct = Math.round((doneCount / totalCount) * 100);
+
+      // ── Overall progress bar ──
+      const overallBar = document.createElement('div');
+      overallBar.style.cssText = 'display:flex;flex-direction:column;align-items:center;';
+      overallBar.innerHTML = `
+        <div class="path-overall-bar animate-in">
+          <div class="path-overall-emoji">${lang.flag}</div>
+          <div class="path-overall-info">
+            <div class="path-overall-title">Overall Progress</div>
+            <div class="path-overall-track">
+              <div class="path-overall-fill" style="width:${pct}%"></div>
+            </div>
+            <div class="path-overall-pct">${doneCount} of ${totalCount} skills complete · ${pct}%</div>
+          </div>
+        </div>`;
+      container.appendChild(overallBar);
+
+      // ── Legend ──
+      const legendWrap = document.createElement('div');
+      legendWrap.style.cssText = 'display:flex;justify-content:center;margin-bottom:2rem;';
+      legendWrap.innerHTML = `
+        <div class="path-legend">
+          <div class="path-legend-item"><div class="legend-dot done"></div> Completed</div>
+          <div class="path-legend-item"><div class="legend-dot active"></div> In Progress</div>
+          <div class="path-legend-item"><div class="legend-dot locked"></div> Locked</div>
+        </div>`;
+      container.appendChild(legendWrap);
+
+      // ── Track ──
+      const track = document.createElement('div');
+      track.className = 'path-track';
+
+      const zigzag = ['offset-center', 'offset-right', 'offset-center', 'offset-left'];
+      let nodeGlobalIndex = 0;
+
+      lang.learningPath.forEach((section, sIdx) => {
+        const secDone = section.nodes.filter(n => completed.has(n.id)).length;
+
+        const banner = document.createElement('div');
+        banner.className = 'path-section-banner animate-in';
+        banner.innerHTML = `
+          <div class="path-section-icon">${section.icon}</div>
+          <div class="path-section-info">
+            <div class="path-section-title">${section.section}</div>
+            <div class="path-section-subtitle">${section.description}</div>
+          </div>
+          <div class="path-section-progress">${secDone}/${section.nodes.length}</div>`;
+        track.appendChild(banner);
+
+        section.nodes.forEach((node, nIdx) => {
+          const status = getNodeStatus(node, allNodes, completed);
+
+          if (nIdx > 0 || sIdx > 0) {
+            const prevNode = nIdx > 0
+              ? section.nodes[nIdx - 1]
+              : lang.learningPath[sIdx - 1].nodes.slice(-1)[0];
+            const prevStatus = getNodeStatus(prevNode, allNodes, completed);
+            const conn = document.createElement('div');
+            conn.className = 'path-connector' + (prevStatus === 'done' ? ' done' : '');
+            track.appendChild(conn);
+          }
+
+          const offsetClass = zigzag[nodeGlobalIndex % zigzag.length];
+          nodeGlobalIndex++;
+
+          const row = document.createElement('div');
+          row.className = `path-row ${offsetClass} animate-in`;
+
+          const statusLabel = { done: '✓ Done', active: '▶ Current', locked: '🔒 Locked' }[status];
+
+          row.innerHTML = `
+            <button class="path-node-btn ${status}" data-node-id="${node.id}">
+              ${status === 'done' ? '<div class="path-node-crown">⭐</div>' : ''}
+              <span>${node.icon}</span>
+              <div class="path-node-xp">+${node.xp} XP</div>
+            </button>
+            <div class="path-node-label">
+              <div class="path-node-name">${node.name}</div>
+              <div class="path-node-desc">${node.description}</div>
+              <span class="path-node-tag ${status}">${statusLabel}</span>
+            </div>`;
+
+          row.querySelector('.path-node-btn').addEventListener('click', () => openPathModal(node, section, status));
+          track.appendChild(row);
+        });
+      });
+
+      container.appendChild(track);
+    }
+
+    // ── PATH MODAL ─────────────────────────────────────────
+    let _modalNode = null;
+    let _modalSection = null;
+
+    function openPathModal(node, section, status) {
+      _modalNode = node;
+      _modalSection = section;
+
+      document.getElementById('pmIcon').textContent = node.icon;
+      document.getElementById('pmTitle').textContent = node.name;
+      document.getElementById('pmSection').textContent = section.section;
+      document.getElementById('pmDesc').textContent = node.description;
+
+      document.getElementById('pmSkills').innerHTML = node.skills
+        .map(s => `<span class="path-modal-skill-tag">${s}</span>`).join('');
+
+      const cta = document.getElementById('pmCta');
+      if (status === 'done') {
+        cta.textContent = '↩ Practice Again';
+        cta.className = 'path-modal-cta';
+        cta.onclick = () => { closePathModal(); startUnitQuiz(node, section); };
+      } else if (status === 'active') {
+        cta.textContent = `▶ Start Unit Quiz — +${node.xp} XP`;
+        cta.className = 'path-modal-cta';
+        cta.onclick = () => { closePathModal(); startUnitQuiz(node, section); };
+      } else {
+        cta.textContent = '🔒 Complete previous skills to unlock';
+        cta.className = 'path-modal-cta locked-cta';
+        cta.onclick = null;
+      }
+
+      document.getElementById('pathModalOverlay').classList.add('open');
+    }
+
+    function markNodeComplete(nodeId) {
+      const langId = currentLang.id;
+      if (!pathProgress[langId]) pathProgress[langId] = new Set();
+      pathProgress[langId].add(nodeId);
+      savePathProgress();
+      closePathModal();
+      renderPath();
+    }
+
+    function closePathModal() {
+      document.getElementById('pathModalOverlay').classList.remove('open');
+    }
+
+    document.getElementById('pathModalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closePathModal();
+    });
+
+    // ══════════════════════════════════════════════════════
+    //  UNIT QUIZ
+    // ══════════════════════════════════════════════════════
+    let uqNode = null, uqSection = null;
+    let uqPool = [], uqIndex = 0, uqScore = 0, uqAnswered = false;
+    const UQ_PASS_THRESHOLD = 0.7; // 70% to pass
+
+    function buildUnitQuizPool(node) {
+      // Gather vocab words that match the node's skill tags (by category or substring match)
+      const lang = currentLang;
+      const skillKeywords = node.skills.map(s => s.toLowerCase());
+
+      // Try matching vocab by category first
+      let pool = lang.vocab.filter(w =>
+        skillKeywords.some(kw =>
+          w.category.toLowerCase().includes(kw) ||
+          w.foreign.toLowerCase().includes(kw) ||
+          w.english.toLowerCase().includes(kw)
+        )
+      );
+
+      // Also include by node name as category hint
+      if (pool.length < 4) {
+        pool = lang.vocab.filter(w =>
+          w.category.toLowerCase().includes(node.name.toLowerCase()) ||
+          node.name.toLowerCase().includes(w.category.toLowerCase())
+        );
+      }
+
+      // Fallback: use the vocab categories that best match the section
+      if (pool.length < 4) {
+        const sectionWords = lang.vocab.filter(w =>
+          w.category.toLowerCase().includes(uqSection.section.toLowerCase().split(' ')[0])
+        );
+        pool = [...new Set([...pool, ...sectionWords])];
+      }
+
+      // Final fallback: grab a random spread from all vocab
+      if (pool.length < 4) {
+        pool = [...lang.vocab].sort(() => Math.random() - 0.5).slice(0, 10);
+      }
+
+      return pool.sort(() => Math.random() - 0.5).slice(0, Math.min(8, pool.length));
+    }
+
+    function startUnitQuiz(node, section) {
+      uqNode = node;
+      uqSection = section;
+      uqPool = buildUnitQuizPool(node);
+      uqIndex = 0; uqScore = 0; uqAnswered = false;
+
+      document.getElementById('uqIcon').textContent = node.icon;
+      document.getElementById('uqTitle').textContent = node.name + ' — Unit Quiz';
+      document.getElementById('uqSubtitle').textContent = `${uqPool.length} questions · Pass with ${Math.round(UQ_PASS_THRESHOLD * 100)}% or higher`;
+
+      document.getElementById('uqResult').classList.remove('visible');
+      document.getElementById('uqQuestionArea').style.display = 'block';
+
+      document.getElementById('unitQuizOverlay').classList.add('open');
+      showUQQuestion();
+    }
+
+    function showUQQuestion() {
+      if (uqIndex >= uqPool.length) { showUQResult(); return; }
+
+      const current = uqPool[uqIndex];
+      uqAnswered = false;
+      const pct = Math.round((uqIndex / uqPool.length) * 100);
+      document.getElementById('uqProgressFill').style.width = pct + '%';
+      document.getElementById('uqQLabel').textContent = `Question ${uqIndex + 1} of ${uqPool.length}`;
+      document.getElementById('uqWord').textContent = current.foreign;
+      document.getElementById('uqFeedback').textContent = '';
+      document.getElementById('uqFeedback').className = 'uq-feedback';
+      document.getElementById('uqNext').style.display = 'none';
+
+      // Build distractors from full vocab pool
+      const allVocab = currentLang.vocab;
+      const others = allVocab.filter((_, i) => allVocab[i].foreign !== current.foreign);
+      const sameCat = others.filter(w => w.category === current.category).sort(() => Math.random() - 0.5);
+      const diffCat = others.filter(w => w.category !== current.category).sort(() => Math.random() - 0.5);
+      const distractors = [...sameCat, ...diffCat].slice(0, 3);
+      const answers = [...distractors, current].sort(() => Math.random() - 0.5);
+
+      const opts = document.getElementById('uqOptions');
+      opts.innerHTML = '';
+      answers.forEach(ans => {
+        const btn = document.createElement('button');
+        btn.className = 'uq-opt';
+        btn.textContent = ans.english;
+        btn.addEventListener('click', () => handleUQAnswer(btn, ans, current));
+        opts.appendChild(btn);
+      });
+    }
+
+    function handleUQAnswer(btn, chosen, correct) {
+      if (uqAnswered) return;
+      uqAnswered = true;
+      const ok = chosen.english === correct.english;
+      if (ok) { btn.classList.add('correct'); uqScore++; }
+      else {
+        btn.classList.add('wrong');
+        document.querySelectorAll('.uq-opt').forEach(b => {
+          if (b.textContent === correct.english) b.classList.add('correct');
+        });
+      }
+      document.querySelectorAll('.uq-opt').forEach(b => b.disabled = true);
+      const fb = document.getElementById('uqFeedback');
+      fb.textContent = ok ? '✓ Correct!' : `✗ Answer: ${correct.english}`;
+      fb.className = 'uq-feedback ' + (ok ? 'good' : 'bad');
+
+      const nb = document.getElementById('uqNext');
+      nb.style.display = 'block';
+      nb.textContent = uqIndex + 1 >= uqPool.length ? 'See Results →' : 'Next →';
+      nb.onclick = () => { uqIndex++; showUQQuestion(); };
+    }
+
+    function showUQResult() {
+      document.getElementById('uqQuestionArea').style.display = 'none';
+      document.getElementById('uqProgressFill').style.width = '100%';
+      const result = document.getElementById('uqResult');
+      result.classList.add('visible');
+
+      const total = uqPool.length;
+      const pct = uqScore / total;
+      const passed = pct >= UQ_PASS_THRESHOLD;
+
+      let emoji = pct === 1 ? '🎉🏆🎉' : pct >= 0.9 ? '🏆' : pct >= UQ_PASS_THRESHOLD ? '🎉' : '📚';
+      let msg = pct === 1 ? 'Perfect score! This skill is yours.' :
+                pct >= 0.9 ? 'Outstanding — you nailed it!' :
+                passed ? "Great job! You've passed this unit." :
+                `You need ${Math.round(UQ_PASS_THRESHOLD*100)}% to pass. Review and try again!`;
+
+      document.getElementById('uqResultEmoji').textContent = emoji;
+      document.getElementById('uqResultScore').textContent = `${uqScore} / ${total}`;
+      document.getElementById('uqResultMsg').textContent = msg;
+
+      const passBtn = document.getElementById('uqBtnPass');
+      const allNodes = currentLang.learningPath.flatMap(s => s.nodes);
+      const completed = pathProgress[currentLang.id] || new Set();
+      const status = getNodeStatus(uqNode, allNodes, completed);
+
+      if (passed && status !== 'done') {
+        passBtn.style.display = 'inline-block';
+        passBtn.onclick = () => { markNodeCompleteFromQuiz(uqNode.id); };
+      } else if (passed && status === 'done') {
+        passBtn.style.display = 'none';
+      } else {
+        passBtn.style.display = 'none';
+      }
+    }
+
+    function markNodeCompleteFromQuiz(nodeId) {
+      const langId = currentLang.id;
+      if (!pathProgress[langId]) pathProgress[langId] = new Set();
+      pathProgress[langId].add(nodeId);
+      savePathProgress();
+      closeUnitQuiz();
+      renderPath();
+    }
+
+    function retryUnitQuiz() {
+      document.getElementById('uqResult').classList.remove('visible');
+      document.getElementById('uqQuestionArea').style.display = 'block';
+      uqPool = uqPool.sort(() => Math.random() - 0.5);
+      uqIndex = 0; uqScore = 0; uqAnswered = false;
+      showUQQuestion();
+    }
+
+    function closeUnitQuiz() {
+      document.getElementById('unitQuizOverlay').classList.remove('open');
+    }
+
+    document.getElementById('unitQuizOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeUnitQuiz();
+    });
+
+    // ══════════════════════════════════════════════════════
+    //  SETTINGS
+    // ══════════════════════════════════════════════════════
+    const DEFAULTS = {
+      fontSize: 1,
+      font: "'DM Sans', sans-serif",
+      highlightColor: '#e8c97a',
+      accentColor: '#e8c97a',
+    };
+    let appSettings = { ...DEFAULTS };
+
+    try {
+      const saved = localStorage.getItem('lingua_settings');
+      if (saved) {
+        const raw = JSON.parse(saved);
+        // migrate old logoColor/heroColor if present
+        if (raw.logoColor && !raw.highlightColor) raw.highlightColor = raw.logoColor;
+        appSettings = { ...DEFAULTS, ...raw };
+      }
+    } catch(e) {}
+
+    function hexToRgb(hex) {
+      const r = parseInt(hex.slice(1,3),16);
+      const g = parseInt(hex.slice(3,5),16);
+      const b = parseInt(hex.slice(5,7),16);
+      return { r, g, b };
+    }
+
+    function applySettings() {
+      const root = document.documentElement;
+      root.style.setProperty('--font-scale', appSettings.fontSize);
+      root.style.setProperty('--body-font', appSettings.font);
+      // Highlight color drives logo, hero em, AND the glow
+      root.style.setProperty('--logo-color', appSettings.highlightColor);
+      root.style.setProperty('--hero-em-color', appSettings.highlightColor);
+      const { r, g, b } = hexToRgb(appSettings.highlightColor);
+      root.style.setProperty('--hero-glow', `rgba(${r}, ${g}, ${b}, 0.12)`);
+      root.style.setProperty('--accent', appSettings.accentColor);
+      root.style.setProperty('--accent2', shadeColor(appSettings.accentColor, -20));
+
+      // sync UI controls
+      document.getElementById('fontSizeSlider').value = appSettings.fontSize;
+      document.getElementById('highlightColorPicker').value = appSettings.highlightColor;
+      document.getElementById('accentColorPicker').value = appSettings.accentColor;
+
+      document.querySelectorAll('#fontChips .settings-chip').forEach(c =>
+        c.classList.toggle('active', c.dataset.font === appSettings.font));
+      syncSwatchActive('highlightSwatches', appSettings.highlightColor);
+      syncSwatchActive('accentSwatches', appSettings.accentColor);
+    }
+
+    function syncSwatchActive(containerId, color) {
+      document.querySelectorAll(`#${containerId} .settings-swatch`).forEach(s =>
+        s.classList.toggle('active', s.dataset.color === color));
+    }
+
+    function saveSettings() {
+      try { localStorage.setItem('lingua_settings', JSON.stringify(appSettings)); } catch(e) {}
+    }
+
+    function resetSettings() {
+      appSettings = { ...DEFAULTS };
+      applySettings();
+      saveSettings();
+    }
+
+    function shadeColor(hex, percent) {
+      const num = parseInt(hex.replace('#',''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.min(255, Math.max(0, (num >> 16) + amt));
+      const G = Math.min(255, Math.max(0, (num >> 8 & 0xff) + amt));
+      const B = Math.min(255, Math.max(0, (num & 0xff) + amt));
+      return '#' + ((1 << 24) | (R << 16) | (G << 8) | B).toString(16).slice(1);
+    }
+
+    function openSettings()  { document.getElementById('settingsOverlay').classList.add('open'); }
+    function closeSettings() { document.getElementById('settingsOverlay').classList.remove('open'); }
+
+    document.getElementById('settingsOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeSettings();
+    });
+
+    function initSettings() {
+      document.getElementById('settingsBtn').addEventListener('click', openSettings);
+
+      document.getElementById('fontSizeSlider').addEventListener('input', e => {
+        appSettings.fontSize = parseFloat(e.target.value);
+        applySettings(); saveSettings();
+      });
+
+      document.querySelectorAll('#fontChips .settings-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          appSettings.font = btn.dataset.font;
+          applySettings(); saveSettings();
+        });
+      });
+
+      // Swatch clicks
+      document.querySelectorAll('.settings-swatch').forEach(sw => {
+        sw.addEventListener('click', () => {
+          const target = sw.dataset.target;
+          const color = sw.dataset.color;
+          if (target === 'highlight') appSettings.highlightColor = color;
+          if (target === 'accent')    appSettings.accentColor = color;
+          applySettings(); saveSettings();
+        });
+      });
+
+      // Custom colour pickers
+      document.getElementById('highlightColorPicker').addEventListener('input', e => {
+        appSettings.highlightColor = e.target.value;
+        syncSwatchActive('highlightSwatches', e.target.value);
+        applySettings(); saveSettings();
+      });
+      document.getElementById('accentColorPicker').addEventListener('input', e => {
+        appSettings.accentColor = e.target.value;
+        syncSwatchActive('accentSwatches', e.target.value);
+        applySettings(); saveSettings();
+      });
     }
 
     init();
