@@ -1571,7 +1571,7 @@
   <main>
     <section class="hero">
       <p class="hero-eyebrow">Free Language Learning</p>
-      <h1>Speak the<br><em>world's languages</em></h1>
+      <h1><em>Speak the <br>world's languages</em></h1>
       <p>Choose a language to start learning vocabulary, phrases, grammar, and quiz yourself by category.</p>
     </section>
 
@@ -2445,6 +2445,18 @@
           { foreign: "Bitte schön", english: "You're welcome", category: "Basics" },
           { foreign: "Entschuldigung", english: "Excuse me / Sorry", category: "Basics" },
           { foreign: "Es tut mir leid", english: "I'm sorry", category: "Basics" },
+          { foreign: "War", english: "Was", category: "Basics" },
+          { foreign: "Mit", english: "With", category: "Basics" },
+          { foreign: "Und", english: "And", category: "Basics" },
+          { foreign: "Das (n)", english: "The (neuter)", category: "Basics" },
+          { foreign: "Die (f)", english: "The (fem.)", category: "Basics" },
+          { foreign: "Der (m)", english: "The (masc.)", category: "Basics" },
+          { foreign: "Dem (d)", english: "The (dative)", category: "Basics"},
+          { foreign: "Den (a-m)", english: "The (accusitive masc.)", category: "Basics"},
+          { foreign: "Des (p)", english: "The (possessive)", category: "Basics"},
+          { foreign: "", english: "", category: "" }, 
+          { foreign: "", english: "", category: "" },
+          { foreign: "", english: "", category: "" }, 
           // Pronouns & Core Verbs
           { foreign: "Ich", english: "I", category: "Pronouns" },
           { foreign: "Du", english: "You (informal)", category: "Pronouns" },
@@ -2468,60 +2480,73 @@
           { foreign: "Acht", english: "Eight", category: "Numbers" },
           { foreign: "Neun", english: "Nine", category: "Numbers" },
           { foreign: "Zehn", english: "Ten", category: "Numbers" },
+          { foreign: "Elf", english: "Eleven", category: "Numbers"},
+          { foreign: "Zwölf", enlish: "Twelve", category: "Numbers"},
+          { foreign: "Dreizehn", english: "Thirteen", category: "Numbers"}, // hehe thertenn
+          { foreign: "Vierzehn", english: "Fourteen", category: "Numbers"},
+          { foreign: "Fünfzehn", english: "Fifteen", category: "Numbers"},
+          { foreign: "Sechszehn", english: "Sixteen", category: "Numbers"},
+          { foreign: "Siebenzehn", english: "Seventeen", category: "Numbers"},  
+          { foreign: "Achtzehn", english: "Eighteen", category: "Numbers"},
+          { foreign: "Neunzehn", english: "Nineteen", category: "Numbers"},
           { foreign: "Zwanzig", english: "Twenty", category: "Numbers" },
+          { foreign: "Eins und Zwanzig", english: "Twenty One", category: "Numbers"},
           { foreign: "Hundert", english: "One hundred", category: "Numbers" },
+          { foreign: "Funfhundert, Funf und Funfzig", english: "Five hundred Fifty Five", category: "Numbers"},
           // Family
-          { foreign: "Die Familie", english: "Family", category: "Family" },
-          { foreign: "Die Mutter", english: "Mother", category: "Family" },
-          { foreign: "Der Vater", english: "Father", category: "Family" },
-          { foreign: "Der Bruder", english: "Brother", category: "Family" },
-          { foreign: "Die Schwester", english: "Sister", category: "Family" },
-          { foreign: "Der Sohn", english: "Son", category: "Family" },
-          { foreign: "Die Tochter", english: "Daughter", category: "Family" },
-          { foreign: "Der Großvater", english: "Grandfather", category: "Family" },
-          { foreign: "Die Großmutter", english: "Grandmother", category: "Family" },
-          { foreign: "Der Onkel", english: "Uncle", category: "Family" },
-          { foreign: "Die Tante", english: "Aunt", category: "Family" },
-          { foreign: "Der Freund / Die Freundin", english: "Friend (m/f)", category: "Family" },
+          { foreign: "Familie", english: "Family", category: "Family" },
+          { foreign: "Mutter", english: "Mother", category: "Family" },
+          { foreign: "Vater", english: "Father", category: "Family" },
+          { foreign: "Bruder", english: "Brother", category: "Family" },
+          { foreign: "Schwester", english: "Sister", category: "Family" },
+          { foreign: "Sohn", english: "Son", category: "Family" },
+          { foreign: "Tochter", english: "Daughter", category: "Family" },
+          { foreign: "Großvater", english: "Grandfather", category: "Family" },
+          { foreign: "Großmutter", english: "Grandmother", category: "Family" },
+          { foreign: "Urgroßvater", english: "Great Grandfather", category: "Family"},
+          { foreign: "Onkel", english: "Uncle", category: "Family" },
+          { foreign: "Tante", english: "Aunt", category: "Family" },
+          { foreign: "Freund / Die Freundin", english: "Friend (m/f)", category: "Family" },
+          { foreign: "Kinder", english: "Children", category: "Family"},
           // Food & Drink
-          { foreign: "Das Wasser", english: "Water", category: "Food & Drink" },
-          { foreign: "Der Kaffee", english: "Coffee", category: "Food & Drink" },
-          { foreign: "Der Wein", english: "Wine", category: "Food & Drink" },
-          { foreign: "Das Bier", english: "Beer", category: "Food & Drink" },
-          { foreign: "Das Brot", english: "Bread", category: "Food & Drink" },
-          { foreign: "Das Fleisch", english: "Meat", category: "Food & Drink" },
-          { foreign: "Das Hähnchen", english: "Chicken", category: "Food & Drink" },
-          { foreign: "Der Fisch", english: "Fish", category: "Food & Drink" },
-          { foreign: "Der Reis", english: "Rice", category: "Food & Drink" },
-          { foreign: "Das Gemüse", english: "Vegetables", category: "Food & Drink" },
-          { foreign: "Das Obst", english: "Fruit", category: "Food & Drink" },
-          { foreign: "Die Milch", english: "Milk", category: "Food & Drink" },
-          { foreign: "Der Käse", english: "Cheese", category: "Food & Drink" },
-          { foreign: "Das Ei", english: "Egg", category: "Food & Drink" },
+          { foreign: "Wasser", english: "Water", category: "Food & Drink" },
+          { foreign: "Kaffee", english: "Coffee", category: "Food & Drink" },
+          { foreign: "Wein", english: "Wine", category: "Food & Drink" },
+          { foreign: "Bier", english: "Beer", category: "Food & Drink" },
+          { foreign: "Brot", english: "Bread", category: "Food & Drink" },
+          { foreign: "Fleisch", english: "Meat", category: "Food & Drink" },
+          { foreign: "Hähnchen", english: "Chicken", category: "Food & Drink" },
+          { foreign: "Fisch", english: "Fish", category: "Food & Drink" },
+          { foreign: "Reis", english: "Rice", category: "Food & Drink" },
+          { foreign: "Gemüse", english: "Vegetables", category: "Food & Drink" },
+          { foreign: "Obst", english: "Fruit", category: "Food & Drink" },
+          { foreign: "Milch", english: "Milk", category: "Food & Drink" },
+          { foreign: "Käse", english: "Cheese", category: "Food & Drink" },
+          { foreign: "Ei", english: "Egg", category: "Food & Drink" },
           // Places
-          { foreign: "Das Haus", english: "House", category: "Places" },
-          { foreign: "Das Hotel", english: "Hotel", category: "Places" },
-          { foreign: "Der Flughafen", english: "Airport", category: "Places" },
-          { foreign: "Der Bahnhof", english: "Train station", category: "Places" },
-          { foreign: "Das Geschäft", english: "Shop / Store", category: "Places" },
-          { foreign: "Der Markt", english: "Market", category: "Places" },
-          { foreign: "Das Krankenhaus", english: "Hospital", category: "Places" },
-          { foreign: "Der Strand", english: "Beach", category: "Places" },
-          { foreign: "Die Bank", english: "Bank", category: "Places" },
-          { foreign: "Das Restaurant", english: "Restaurant", category: "Places" },
-          { foreign: "Die Apotheke", english: "Pharmacy", category: "Places" },
+          { foreign: "Haus", english: "House", category: "Places" },
+          { foreign: "Hotel", english: "Hotel", category: "Places" },
+          { foreign: "Flughafen", english: "Airport", category: "Places" },
+          { foreign: "Bahnhof", english: "Train station", category: "Places" },
+          { foreign: "Geschäft", english: "Shop / Store", category: "Places" },
+          { foreign: "Markt", english: "Market", category: "Places" },
+          { foreign: "Krankenhaus", english: "Hospital", category: "Places" },
+          { foreign: "Strand", english: "Beach", category: "Places" },
+          { foreign: "Bank", english: "Bank", category: "Places" },
+          { foreign: "Restaurant", english: "Restaurant", category: "Places" },
+          { foreign: "Apotheke", english: "Pharmacy", category: "Places" },
           // Time
           { foreign: "Heute", english: "Today", category: "Time" },
           { foreign: "Morgen", english: "Tomorrow", category: "Time" },
           { foreign: "Gestern", english: "Yesterday", category: "Time" },
           { foreign: "Jetzt", english: "Now", category: "Time" },
           { foreign: "Bald", english: "Soon", category: "Time" },
-          { foreign: "Der Morgen", english: "Morning", category: "Time" },
-          { foreign: "Der Nachmittag", english: "Afternoon", category: "Time" },
-          { foreign: "Die Nacht", english: "Night", category: "Time" },
-          { foreign: "Die Woche", english: "Week", category: "Time" },
-          { foreign: "Der Monat", english: "Month", category: "Time" },
-          { foreign: "Das Jahr", english: "Year", category: "Time" },
+          { foreign: "Morgen", english: "Morning", category: "Time" },
+          { foreign: "Nachmittag", english: "Afternoon", category: "Time" },
+          { foreign: "Nacht", english: "Night", category: "Time" },
+          { foreign: "Woche", english: "Week", category: "Time" },
+          { foreign: "Monat", english: "Month", category: "Time" },
+          { foreign: "Jahr", english: "Year", category: "Time" },
           // Descriptions
           { foreign: "Groß", english: "Big / Tall", category: "Descriptions" },
           { foreign: "Klein", english: "Small", category: "Descriptions" },
@@ -2543,6 +2568,10 @@
           { foreign: "Nett", english: "Nice / Kind", category: "Descriptions" },
           { foreign: "Mein (m/n)", english: "My (masc./neuter)", category: "Descriptions" },
           { foreign: "Meine (f/pl)", english: "My (fem./plural)", category: "Descriptions" },
+          // Vehicles
+          { foreign: "Krankenwagon", english: "Ambulance", category: "Vehicle" },
+          { foreign: "Flugzeug", english: "Airplane", categoty: "Vehicle"},
+
         ],
 
         phrases: [
@@ -2615,6 +2644,25 @@
             examples: [
               { foreign: "Ich lerne Deutsch.", english: "I learn German. (Subject first)" },
               { foreign: "Heute lerne ich Deutsch.", english: "Today I learn German. (Adverb first → verb second)" },
+            ]
+          },
+        ],
+
+        learningPath: [
+          {
+            section: "Les Bases",
+            icon: "🌱",
+            description: "Start with the essentials — greet people and count to ten.",
+            nodes: [
+              {
+                id: "de-greetings",
+                name: "Greetings",
+                icon: "👋",
+                description: "Hallo und Tschüss. Hello and goodbye",
+                skills: ["Hallo", "Tschüss", "Auf Wiedersehen", "Und", "Mit"],
+                xp: 20,
+                status: "done"
+              },
             ]
           },
         ],
@@ -3558,7 +3606,7 @@
           <div class="path-empty">
             <div class="path-empty-icon">🗺️</div>
             <h3>No Learning Path Yet</h3>
-            <p>Add a <code>learningPath</code> array to this language's data to display a Duolingo-style skill tree here.</p>
+            <p>Concact a devolper of <code>Lingua</code> to get a learning path for this language.</p>
           </div>`;
         return;
       }
