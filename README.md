@@ -1,5 +1,5 @@
 # Lingua
-A stupid language learning *website*
+*A stupid language learning website*
 
 https://gamingwyyt.github.io/Lingua/
 
