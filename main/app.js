@@ -1,9 +1,3 @@
-const LANGUAGE_REGISTRY = {
-    _langs: [],
-    register(lang) { this._langs.push(lang); },
-    getAll() { return this._langs; }
-};
-
 /* 
 {
     id: "languageFramweork",
@@ -40,6 +34,12 @@ let vocabCatFilter = 'All';
 let phrasesCatFilter = 'All';
 let selectedQuizCats = new Set();
 let quizPool = [], quizIndex = 0, quizScore = 0, quizAnswered = false;
+
+const LANGUAGE_REGISTRY = {
+    _langs: [],
+    register(lang) { this._langs.push(lang); },
+    getAll() { return this._langs; }
+};
 
 let pathProgress = {};
 try {
@@ -80,7 +80,7 @@ function init() {
 function renderLangPicker() {
     const el = document.getElementById('langPicker');
     el.innerHTML = '';
-    LANGUAGES.forEach(lang => {
+    LANGUAGE_REGISTRY.getAll().forEach(lang => {
         if (lang.id == "languageFramweork") return;
         const card = document.createElement('div');
         card.className = 'lang-card';
@@ -96,7 +96,7 @@ function renderLangPicker() {
 function renderNavLangs() {
     const el = document.getElementById('navLangs');
     el.innerHTML = '';
-    LANGUAGES.forEach(lang => {
+    LANGUAGE_REGISTRY.getAll().forEach(lang => {
         if (lang.id == "languageFramweork") return;
         const btn = document.createElement('button');
         btn.className = 'nav-lang-btn';
@@ -108,7 +108,7 @@ function renderNavLangs() {
 }
 
 function selectLang(id) {
-    currentLang = LANGUAGES.find(l => l.id === id);
+    currentLang = LANGUAGE_REGISTRY.getAll().find(l => l.id === id);
     if (!currentLang) return;
     vocabCatFilter = phrasesCatFilter = 'All';
 
