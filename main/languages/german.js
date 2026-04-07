@@ -159,8 +159,8 @@ LANGUAGE_REGISTRY.register({
         { foreign: "Dreikäsehoch", english: "Small child (lit: three cheeses high)", category: "Oddly Descriptive" },
         { foreign: "Unbaumtraurigkeit", english: "Sadness when taking down a christmas tree", category: "Oddly Descriptive" },
         { foreign: "Klugscheißer", english: "A know-it-all", category: "Oddly Descriptive" },
-        { foreign: "Wunschkleidungsbehalten", english: "", category: "Oddly Descriptive" },
-        { foreign: "", english: "", category: "Oddly Descriptive" },
+        { foreign: "Wunschkleidungsbehalten", english: "the act of keeping old clothes in hope one day they will fit again", category: "Oddly Descriptive" },
+        { foreign: "Luxusproblem", english: "A problem that arises in a priviliged situation and is therefore not really serious", category: "Oddly Descriptive" },
     ],
 
     phrases: [
