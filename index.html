@@ -5,15 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Linguag — Learn Languages</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="main/stylesheet.css">
-  <script src="main/app.js"></script>
-  <script src="main/languages/spanish.js"></script>
-  <script src="main/languages/french.js"></script>
-  <script src="main/languages/german.js"></script>
-  <script src="main/languages/russian.js"></script>
-  <script src="main/languages/ukrainian.js"></script>
-  <script src="main/languages/italian.js"></script>
 </head>
 
 <body>
@@ -134,7 +129,8 @@
       <div class="settings-section">
         <div class="settings-section-label"> <em>Highlight Color</em> </div>
         <div class="settings-swatches" id="highlightSwatches">
-          <div class="settings-swatch active" data-target="highlight" style="background:#f07d6a" data-color="#f07d6a"></div>
+          <div class="settings-swatch active" data-target="highlight" style="background:#f07d6a" data-color="#f07d6a">
+          </div>
           <div class="settings-swatch" data-target="highlight" style="background:#c72626" data-color="#c72626"></div>
           <div class="settings-swatch" data-target="highlight" style="background:#d97415" data-color="#d97415"></div>
           <div class="settings-swatch" data-target="highlight" style="background:#e8c97a" data-color="#e8c97a"></div>
@@ -156,7 +152,8 @@
       <div class="settings-section">
         <div class="settings-section-label"> <em>Accent Color</em> </div>
         <div class="settings-swatches" id="accentSwatches">
-          <div class="settings-swatch active" data-target="accent" style="background:#f07d6a" data-color="#f07d6a"></div>
+          <div class="settings-swatch active" data-target="accent" style="background:#f07d6a" data-color="#f07d6a">
+          </div>
           <div class="settings-swatch" data-target="accent" style="background:#c72626" data-color="#c72626"></div>
           <div class="settings-swatch" data-target="accent" style="background:#d97415" data-color="#d97415"></div>
           <div class="settings-swatch" data-target="accent" style="background:#e8c97a" data-color="#e8c97a"></div>
@@ -224,6 +221,18 @@
   </div>
 
   <script src="main/app.js"></script>
+  <script src="main/languages/spanish.js"></script>
+  <script src="main/languages/french.js"></script>
+  <script src="main/languages/german.js"></script>
+  <script src="main/languages/russian.js"></script>
+  <script src="main/languages/ukrainian.js"></script>
+  <script src="main/languages/italian.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      init();
+    });
+  </script>
 </body>
 
 </html>

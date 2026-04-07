@@ -543,8 +543,10 @@ function closePathModal() {
     document.getElementById('pathModalOverlay').classList.remove('open');
 }
 
-document.getElementById('pathModalOverlay').addEventListener('click', function (e) {
-    if (e.target === this) closePathModal();
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('pathModalOverlay')?.addEventListener('click', function (e) {
+        if (e.target === this) closePathModal();
+    });
 });
 
 // ══════════════════════════════════════════════════════
@@ -834,5 +836,3 @@ function initSettings() {
         applySettings(); saveSettings();
     });
 }
-
-init();
