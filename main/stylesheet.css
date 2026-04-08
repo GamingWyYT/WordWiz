@@ -545,11 +545,11 @@ nav {
     flex-shrink: 0;
 }
 
-#logoLin {
+#logoWord {
     color: var(--logo-color);
 }
 
-#logoGua {
+#logoWiz {
     color: var(--text);
 }
 
