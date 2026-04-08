@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linguag — Learn Languages</title>
+  <title>Lingua — Learn Languages</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
     rel="stylesheet">
@@ -14,19 +14,19 @@
 <body>
   <style src="stylesheet.css"></style>
   <nav>
-    <div class="logo"><span id="logoLin">Lin</span><span id="logoGua">guag</span></div>
+    <div class="logo"><span id="logoLin">Lin</span><span id="logoGua">gua</span></div>
     <div class="nav-langs" id="navLangs"></div>
     <button class="settings-btn" id="settingsBtn" title="Settings">⚙</button>
   </nav>
 
   <main>
     <section class="hero">
-      <h1><em>Speak the <br>world's languages</em></h1>
-      <p>Choose a language to start learning vocabulary, phrases, grammar, and quiz yourself by category.</p>
+      <h1><em>Learn the world's <h1 style="font-family: 'Courier New', Courier, monospace;">coding languages</em></h1></h1>
+      <p>Choose a language to start learning syntax, variables, flow control and more.</p>
     </section>
 
     <div class="lang-picker" id="langPicker"></div>
-
+    
     <div id="lesson-area">
       <div class="tabs">
         <button class="tab active" data-tab="vocab">Vocabulary</button>
@@ -41,7 +41,6 @@
         <div class="cat-filter" id="vocabCatFilter"></div>
         <div class="vocab-count" id="vocabCount"></div>
         <div class="vocab-grid" id="vocabGrid"></div>
-        <p class="vocab-hint">💡 Click any card to reveal the English translation</p>
       </div>
 
       <div class="tab-panel" id="tab-phrases">
@@ -78,7 +77,7 @@
               <div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div>
             </div>
             <div class="quiz-question">
-              <div class="quiz-prompt">Translate this word</div>
+              <div class="quiz-prompt">Find the errors</div>
               <div class="quiz-category-badge" id="quizCatBadge"></div>
               <div class="quiz-word" id="quizWord"></div>
             </div>
@@ -117,11 +116,11 @@
       <div class="settings-section">
         <div class="settings-section-label">Body Font</div>
         <div class="settings-chips" id="fontChips">
-          <button class="settings-chip active" data-font="'DM Sans', sans-serif">DM Sans</button>
+          <button class="settings-chip" data-font="'DM Sans', sans-serif">DM Sans</button>
           <button class="settings-chip" data-font="'Inter', sans-serif">Inter</button>
           <button class="settings-chip" data-font="'Georgia', serif">Georgia</button>
           <button class="settings-chip" data-font="'Courier New', monospace">Mono</button>
-          <button class="settings-chip" data-font="Jetbrains Mono, monospace">Jetbrains Mono</button>
+          <button class="settings-chip active" data-font="Jetbrains Mono, monospace">Jetbrains Mono</button>
           <button class="settings-chip" data-font="system-ui, sans-serif">System</button>
         </div>
       </div>
@@ -129,13 +128,13 @@
       <div class="settings-section">
         <div class="settings-section-label"> <em>Highlight Color</em> </div>
         <div class="settings-swatches" id="highlightSwatches">
-          <div class="settings-swatch active" data-target="highlight" style="background:#f07d6a" data-color="#f07d6a">
+          <div class="settings-swatch" data-target="highlight" style="background:#f07d6a" data-color="#f07d6a">
           </div>
           <div class="settings-swatch" data-target="highlight" style="background:#c72626" data-color="#c72626"></div>
           <div class="settings-swatch" data-target="highlight" style="background:#d97415" data-color="#d97415"></div>
           <div class="settings-swatch" data-target="highlight" style="background:#e8c97a" data-color="#e8c97a"></div>
           <div class="settings-swatch" data-target="highlight" style="background:#6fcf97" data-color="#6fcf97"></div>
-          <div class="settings-swatch" data-target="highlight" style="background:#1dd269" data-color="#1dd269"></div>
+          <div class="settings-swatch active" data-target="highlight" style="background:#1dd269" data-color="#1dd269"></div>
           <div class="settings-swatch" data-target="highlight" style="background:#7ec8e3" data-color="#7ec8e3"></div>
           <div class="settings-swatch" data-target="highlight" style="background:#1993c0" data-color="#1993c0"></div>
           <div class="settings-swatch" data-target="highlight" style="background:#341da4" data-color="#341da4"></div>
@@ -152,13 +151,13 @@
       <div class="settings-section">
         <div class="settings-section-label"> <em>Accent Color</em> </div>
         <div class="settings-swatches" id="accentSwatches">
-          <div class="settings-swatch active" data-target="accent" style="background:#f07d6a" data-color="#f07d6a">
+          <div class="settings-swatch" data-target="accent" style="background:#f07d6a" data-color="#f07d6a">
           </div>
           <div class="settings-swatch" data-target="accent" style="background:#c72626" data-color="#c72626"></div>
           <div class="settings-swatch" data-target="accent" style="background:#d97415" data-color="#d97415"></div>
           <div class="settings-swatch" data-target="accent" style="background:#e8c97a" data-color="#e8c97a"></div>
           <div class="settings-swatch" data-target="accent" style="background:#6fcf97" data-color="#6fcf97"></div>
-          <div class="settings-swatch" data-target="accent" style="background:#1dd269" data-color="#1dd269"></div>
+          <div class="settings-swatch active" data-target="accent" style="background:#1dd269" data-color="#1dd269"></div>
           <div class="settings-swatch" data-target="accent" style="background:#7ec8e3" data-color="#7ec8e3"></div>
           <div class="settings-swatch" data-target="accent" style="background:#1993c0" data-color="#1993c0"></div>
           <div class="settings-swatch" data-target="accent" style="background:#341da4" data-color="#341da4"></div>
@@ -221,12 +220,7 @@
   </div>
 
   <script src="main/app.js"></script>
-  <script src="main/languages/spanish.js"></script>
-  <script src="main/languages/french.js"></script>
-  <script src="main/languages/german.js"></script>
-  <script src="main/languages/russian.js"></script>
-  <script src="main/languages/ukrainian.js"></script>
-  <script src="main/languages/italian.js"></script>
+  <script src="main/languages/python.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {

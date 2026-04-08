@@ -722,9 +722,9 @@ document.getElementById('unitQuizOverlay').addEventListener('click', function (e
 // ══════════════════════════════════════════════════════
 const DEFAULTS = {
     fontSize: 1,
-    font: "'DM Sans', sans-serif",
-    highlightColor: '#e8c97a',
-    accentColor: '#e8c97a',
+    font: "'Jetbrains Mono', monospace",
+    highlightColor: '#1dd269',
+    accentColor: '#1dd269',
 };
 let appSettings = { ...DEFAULTS };
 
