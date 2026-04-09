@@ -364,7 +364,7 @@ LANGUAGE_REGISTRY.register({
                     icon: "📄",
                     description: "Das Bruder ist sehr klüg und die Schwester is sehr nett",
                     skills: [
-                        "Familie",                                       // de-everyFamily
+                        "Familie",                                      // de-everyFamily
                         "Bruder", "Schwester",                          // de-siblings
                         "Tochter", "Sohn",                              // de-kids
                         "Vater", "Großvater", "Mutter", "Großmutter"    // de-grandParents
