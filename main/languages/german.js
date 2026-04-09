@@ -152,7 +152,7 @@ LANGUAGE_REGISTRY.register({
         { foreign: "Last-kraft-wagon/LKW", english: "Truck (lit: load-power-vehicle)", category: "Vehicle" },
         { foreign: "Hubschrauber", english: "helicopter", category: "Vehicle" },
         // Sentences,
-        { foreign: "Ich bin nett", english: "I am nice", context: "Sentences" },
+        { foreign: "Ich bin nett", english: "I am nice", category: "Sentences" },
         { foreign: "Du bist klüg", english: "You are smart", category: "Sentences" },
         { foreign: "", english: "", category: "Sentences" },
         { foreign: "", english: "", category: "Sentences" },
@@ -291,9 +291,9 @@ LANGUAGE_REGISTRY.register({
                 },
                 {
                     id: "de-basicsQuiz",
-                    name: "Responding To People",
+                    name: "Unit Quiz",
                     icon: "📄",
-                    description: "Responding To People",
+                    description: "Unit Quiz For Basics",
                     skills: [
                         "Hallo", "Tschüss", "Auf Wiedersehen", "Und", "Mit",                                            // de-greetings
                         "Das (n)", "Die (f)", "Der (f)", "Dem (d)", "Den (a-m)", "Des (p)",                             // de-the
@@ -305,7 +305,7 @@ LANGUAGE_REGISTRY.register({
             ],
         },
         {
-            section: "Die Family Or Smth",
+            section: "Die Familie",
             icon: "👨‍👩‍👧‍👦",
             description: "Learn how to talk about people",
             nodes: [
@@ -329,7 +329,7 @@ LANGUAGE_REGISTRY.register({
                 },
                 {
                     id: "de-familyQuiz1",
-                    name: "Famil Quiz #1",
+                    name: "Unit Quiz #1",
                     icon: "📄",
                     description: "Das Bruder ist sehr klüg und die Schwester is sehr nett",
                     skills: [
@@ -360,9 +360,9 @@ LANGUAGE_REGISTRY.register({
                 },
                 {
                     id: "de-familyQuiz2",
-                    name: "Full Family Quiz",
+                    name: "Unit Quiz",
                     icon: "📄",
-                    description: "Das Bruder ist sehr klüg und die Schwester is sehr nett",
+                    description: "Unit Quiz For Family",
                     skills: [
                         "Familie",                                      // de-everyFamily
                         "Bruder", "Schwester",                          // de-siblings
@@ -399,9 +399,9 @@ LANGUAGE_REGISTRY.register({
                 },
                 {
                     id: "de-foodquiz",
-                    name: "Food & Drinks",
+                    name: "Unit Quiz",
                     icon: "📄",
-                    description: "Brot und Kaffee mit Milch, bitte",
+                    description: "Unit Quiz For Food & Drinks",
                     skills: [
                         "Tee", "Milch", "Kaffee", "Wein", "Bier", "Mit", "Und",                             // de-drinks
                         "Sandwich", "Brot", "Hähnchen", "Fisch", "Reis", "Gemüse", "Obst", "Käse", "Ei",    // de-food
@@ -436,9 +436,9 @@ LANGUAGE_REGISTRY.register({
                 },
                 {
                     id: "de-numbersQuiz",
-                    name: "Counting Up To 20",
+                    name: "Unit Quiz",
                     icon: "🔢",
-                    description: "Learn to count from 1 to 20",
+                    description: "Unit Quiz For Numbers",
                     skills: [
                         "Eins", "Zwei", "Drei", "Vier", "Fünf", "Sechs", "Sieben", "Acht", "Neun", "Zehn",                                  // de-numbers
                         "Elf", "Zwölf", "Dreizehn", "Vierzehn", "Fünfzehn", "Sechszehn", "Siebenzehn", "Achtzehn", "Neunzehn", "Zwanzig"    // de-numbers2

@@ -218,6 +218,19 @@ LANGUAGE_REGISTRY.register({
                     icon: "🙋",
                     description: "Learn who's who: yo, tú, él, ella, nosotros, ellos.",
                     skills: ["Yo", "Tú", "Él / Ella", "Nosotros"],
+                    xp: 20,
+                    status: "locked"
+                },
+                {
+                    id: "sp-fundationsQuiz",
+                    name: "Unit Quiz",
+                    icon: "📄",
+                    description: "Unit Quiz For Foundations",
+                    skills: [
+                        "Hola", "Adiós", "Por favor", "Gracias",                                            // sp-greetings
+                        "Uno", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete", "Ocho", "Nueve", "Diez",  // sp-numbers
+                        "Yo", "Tú", "Él / Ella", "Nosotros",                                                // sp-pronouns
+                    ],
                     xp: 30,
                     status: "locked"
                 },
@@ -234,7 +247,7 @@ LANGUAGE_REGISTRY.register({
                     icon: "👨‍👩‍👧",
                     description: "Talk about the people closest to you.",
                     skills: ["Madre", "Padre", "Hermano", "Abuela"],
-                    xp: 30,
+                    xp: 20,
                     status: "locked"
                 },
                 {
@@ -243,7 +256,7 @@ LANGUAGE_REGISTRY.register({
                     icon: "🍽️",
                     description: "Order meals, describe food, and survive in any restaurant.",
                     skills: ["El agua", "El café", "El pan", "La carne"],
-                    xp: 40,
+                    xp: 20,
                     status: "locked"
                 },
                 {
@@ -252,9 +265,22 @@ LANGUAGE_REGISTRY.register({
                     icon: "🗺️",
                     description: "Find your way around town — hotel, airport, market and more.",
                     skills: ["La casa", "El aeropuerto", "La playa"],
-                    xp: 40,
+                    xp: 20,
                     status: "locked"
                 },
+                {
+                    id: "sp-everydayLifeQuiz",
+                    name: "Unit Quiz",
+                    icon: "📄",
+                    description: "Unit Quiz For Everyday Life",
+                    skills: [
+                        "Madre", "Padre", "Hermano", "Abuela",      // sp-family
+                        "El agua", "El café", "El pan", "La carne", // sp-food
+                        "La casa", "El aeropuerto", "La playa",     // sp-places
+                    ],
+                    xp: 40,
+                    status: "locked",
+                }
             ]
         },
         {
@@ -268,7 +294,7 @@ LANGUAGE_REGISTRY.register({
                     icon: "⏰",
                     description: "Talk about when things happen — today, tomorrow, next week.",
                     skills: ["Hoy", "Mañana", "La semana", "El año"],
-                    xp: 40,
+                    xp: 20,
                     status: "locked"
                 },
                 {
@@ -277,7 +303,7 @@ LANGUAGE_REGISTRY.register({
                     icon: "🎨",
                     description: "Describe people, places, and things with adjectives.",
                     skills: ["Grande", "Pequeño", "Bonito", "Feliz"],
-                    xp: 50,
+                    xp: 20,
                     status: "locked"
                 },
                 {
@@ -286,7 +312,20 @@ LANGUAGE_REGISTRY.register({
                     icon: "⚖️",
                     description: "Master Spanish's two 'to be' verbs — the #1 hurdle for learners.",
                     skills: ["Soy", "Estoy", "Es", "Está"],
-                    xp: 60,
+                    xp: 20,
+                    status: "locked"
+                },
+                {
+                    id: "sp-conversationsQuiz",
+                    name: "Unit Quiz",
+                    icon: "📄",
+                    description: "Unit Quiz For Conversations",
+                    skills: [
+                        "Hoy", "Mañana", "La semana", "El año", // sp-time
+                        "Grande", "Pequeño", "Bonito", "Feliz", // sp-descriptions
+                        "Soy", "Estoy", "Es", "Está"            // sp-grammar-ser
+                    ],
+                    xp: 40,
                     status: "locked"
                 },
             ]
@@ -302,7 +341,7 @@ LANGUAGE_REGISTRY.register({
                     icon: "🔄",
                     description: "Me llamo, me levanto — actions you do to yourself.",
                     skills: ["Me llamo", "Me levanto", "Se llama"],
-                    xp: 60,
+                    xp: 20,
                     status: "locked"
                 },
                 {
@@ -311,7 +350,7 @@ LANGUAGE_REGISTRY.register({
                     icon: "✈️",
                     description: "Survive airports, trains, and hotels with these key phrases.",
                     skills: ["¿Dónde está…?", "Un billete a…", "La cuenta"],
-                    xp: 50,
+                    xp: 20,
                     status: "locked"
                 },
             ]

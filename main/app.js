@@ -164,9 +164,11 @@ function renderVocabGrid() {
     filtered.forEach(item => {
         const card = document.createElement('div');
         card.className = 'vocab-card animate-in';
-        card.innerHTML = `<div class="foreign">${item.foreign}</div>
-      <div class="english">${item.english}</div>
-      <div class="category-tag">${item.category}</div>`;
+        card.innerHTML = `
+        <div class="foreign">${item.foreign}</div>
+        <div class="english">${item.english}</div>
+        <div class="category-tag">${item.category}</div>
+        `;
         card.addEventListener('click', () => card.classList.toggle('revealed'));
         grid.appendChild(card);
     });
