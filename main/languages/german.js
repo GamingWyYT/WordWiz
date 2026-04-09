@@ -151,6 +151,13 @@ LANGUAGE_REGISTRY.register({
         { foreign: "Auto", english: "car", category: "Vehicle" },
         { foreign: "Last-kraft-wagon/LKW", english: "Truck (lit: load-power-vehicle)", category: "Vehicle" },
         { foreign: "Hubschrauber", english: "helicopter", category: "Vehicle" },
+        // Sentences,
+        { foreign: "Ich bin nett", english: "I am nice", context: "Sentences" },
+        { foreign: "Du bist klüg", english: "You are smart", category: "Sentences" },
+        { foreign: "", english: "", category: "Sentences" },
+        { foreign: "", english: "", category: "Sentences" },
+        { foreign: "", english: "", category: "Sentences" },
+        { foreign: "", english: "", category: "Sentences" },
     ],
 
     phrases: [
@@ -182,8 +189,8 @@ LANGUAGE_REGISTRY.register({
         { foreign: "Guten Appetit!", english: "Enjoy your meal!", context: "Daily Life" },
         // Being Mean
         { foreign: "Du bist ein Idiot.", english: "You are an idiot.", context: "Being Mean" },
-        { foreign: "Du bist nicht sehr klüg.", english: "You are an idiot.", context: "Being Mean" },
-        // Oddly Descriptive
+        { foreign: "Du bist nicht klüg.", english: "You are not smart.", context: "Being Mean" },
+        // Oddly Descriptive                                     
         { foreign: "Backpfeifengesicht", english: "A face that begs to be slapped", context: "Oddly Descriptive" },
         { foreign: "Kummerspeck", english: "Excess weight gained from emotional eating", context: "Oddly Descriptive" },
         { foreign: "Schadenfreude", english: "The feeling of pleasure gained from seeing anothers misfortune", context: "Oddly Descriptive" },
@@ -195,7 +202,7 @@ LANGUAGE_REGISTRY.register({
         { foreign: "Klugscheißer", english: "A know-it-all", context: "Oddly Descriptive" },
         { foreign: "Wunschkleidungsbehalten", english: "The act of keeping old clothes in hope one day they will fit again", context: "Oddly Descriptive" },
         { foreign: "Luxusproblem", english: "A problem that arises in a priviliged situation and is therefore not really serious", context: "Oddly Descriptive" },
-        { foreign: "Hexenschuss", english: "A sudden and severe back pain", context: "Oddly Descriptive" }
+        { foreign: "Hexenschuss", english: "A sudden and severe back pain", context: "Oddly Descriptive" },
     ],
 
     grammar: [
